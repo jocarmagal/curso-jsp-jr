@@ -11,7 +11,9 @@
 
 </head>
 <body>
-	<center><h1>Cadastro de Usuario</h1></center>
+	<center>
+		<h1>Cadastro de Usuario</h1>
+	</center>
 	<form action="salvarUsuario" method="post">
 		<ul class="form-style-1">
 			<li>
@@ -34,30 +36,44 @@
 							value="${user.senha}"></td>
 					</tr>
 					<tr>
+						<td>Nome:</td>
+						<td><input type="text" id="nome" name="nome"
+							value="${user.nome}"></td>
+					</tr>
+					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar"></td>
-						
+
 					</tr>
 					</li>
 				</table>
-<div class="container">
-				<table class="responsive-table" >
-					<caption>Usuários cadastrados</caption>
-					<c:forEach items="${usuarios}" var="user">
+				<div class="container">
+					<table class="responsive-table">
+						<caption>Usuários cadastrados</caption>
 						<tr>
-							<td style="width: 150px"><c:out value="${user.id}"></c:out></td>
-							<td style="widht: 150px"><c:out value="${user.login}"></c:out></td>
-							<td><c:out value="${user.senha}"></c:out></td>
-						
-						<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
-							src="resources/img/excluir.png" alt="excluir" title="Excluir"
-							width="20px" height="20px"></a></td>
-						<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
-							alt="Editar" title="Editar" src="resources/img/editar.png"
-							width="20px" height="20px"></a></td>
-</tr>
-					</c:forEach>
-				</table>
+							<th>Id</th>
+							<th>Login</th>
+							<th>Nome</th>
+							<th>Delete</th>
+							<th>Editar</th>
+						</tr>
+
+
+						<c:forEach items="${usuarios}" var="user">
+							<tr>
+								<td style="width: 150px"><c:out value="${user.id}"></c:out></td>
+								<td style="widht: 150px"><c:out value="${user.login}"></c:out></td>
+								<td><c:out value="${user.nome}"></c:out></td>
+
+								<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
+										src="resources/img/excluir.png" alt="excluir" title="Excluir"
+										width="20px" height="20px"></a></td>
+								<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
+										alt="Editar" title="Editar" src="resources/img/editar.png"
+										width="20px" height="20px"></a></td>
+							</tr>
+						</c:forEach>
+					</table>
 		</ul>
 	</form>
 	</div>
