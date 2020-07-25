@@ -11,6 +11,8 @@
 	<jsp:setProperty property="*" name="calcula" />
 	<h2>Sej bem vindo ao sistema JSP</h2>
 	
-	<a href="cadastroUsuario.jsp">Cadastro de usuários</a>
+	<a href="salvarUsuario?acao=listartodos"><img
+										src="resources/img/usuario.jpeg" title="Cadastro de usuário"
+										width="100px" height="100px"></a>
 </body>
 </html>

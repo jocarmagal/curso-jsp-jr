@@ -40,7 +40,13 @@ public class Usuario extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("user", beanCursoJsp);
 				view.forward(request, response);
+			} else if (acao.equalsIgnoreCase("listartodos")) {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,31 +56,52 @@ public class Usuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String id = request.getParameter("id");
-		String login = request.getParameter("login");
-		String senha = request.getParameter("senha");
-		String nome = request.getParameter("nome");
-		BeanCursoJsp usuario = new BeanCursoJsp();
-		usuario.setLogin(login);
-		usuario.setSenha(senha);
-		usuario.setNome(nome);
-		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+		String acao = request.getParameter("acao");
+		if (acao != null && acao.equalsIgnoreCase("reset")) {
 
-		if (id == null || id.isEmpty()) {
+			try {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
 
-			daoUsuario.salvar(usuario);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		} else {
-			daoUsuario.atualizar(usuario);
-		}
 
-		try {
-			RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-			request.setAttribute("usuarios", daoUsuario.listar());
-			view.forward(request, response);
+			String id = request.getParameter("id");
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha");
+			String nome = request.getParameter("nome");
+			String fone = request.getParameter("fone");
+			BeanCursoJsp usuario = new BeanCursoJsp();
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
+			usuario.setNome(nome);
+			usuario.setFone(fone);
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			try {
+				
+				if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login) ) {
+					request.setAttribute("msg", "Não Cadastrado este usuário já existe com o mesmo login!");
+					
+				}
+			if (id == null || id.isEmpty() 
+					&& daoUsuario.validarLogin(login)) {
 
-		} catch (Exception e) {
-			e.printStackTrace();
+				daoUsuario.salvar(usuario);
+			} else if (id != null && !id.isEmpty() ){
+				daoUsuario.atualizar(usuario);
+			}
+
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
-
 }

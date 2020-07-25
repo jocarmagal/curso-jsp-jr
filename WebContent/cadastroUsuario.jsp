@@ -14,6 +14,7 @@
 	<center>
 		<h1>Cadastro de Usuario</h1>
 	</center>
+	<h3 style="color: orange;">${msg}</h3>
 	<form action="salvarUsuario" method="post">
 		<ul class="form-style-1">
 			<li>
@@ -41,8 +42,15 @@
 							value="${user.nome}"></td>
 					</tr>
 					<tr>
+						<td>Fone:</td>
+						<td><input type="text" id="fone" name="fone"
+							value="${user.fone}"></td>
+					</tr>
+					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"></td>
+						<td><input type="submit" value="Salvar"><input
+							type="submit" value="Cancelar"
+							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 
 					</tr>
 					</li>
@@ -54,6 +62,7 @@
 							<th>Id</th>
 							<th>Login</th>
 							<th>Nome</th>
+							<th>Fone</th>
 							<th>Delete</th>
 							<th>Editar</th>
 						</tr>
@@ -64,11 +73,11 @@
 								<td style="width: 150px"><c:out value="${user.id}"></c:out></td>
 								<td style="widht: 150px"><c:out value="${user.login}"></c:out></td>
 								<td><c:out value="${user.nome}"></c:out></td>
-
-								<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
+								<td><c:out value="${user.fone}"></c:out></td>
+								<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
 										src="resources/img/excluir.png" alt="excluir" title="Excluir"
 										width="20px" height="20px"></a></td>
-								<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
+								<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
 										alt="Editar" title="Editar" src="resources/img/editar.png"
 										width="20px" height="20px"></a></td>
 							</tr>

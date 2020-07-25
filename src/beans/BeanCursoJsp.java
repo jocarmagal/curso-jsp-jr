@@ -10,6 +10,17 @@ public class BeanCursoJsp {
 	
 	private String nome;
 
+	public String getFone() {
+		return fone;
+	}
+
+	public void setFone(String fone) {
+		this.fone = fone;
+	}
+
+	private String fone;
+	
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
