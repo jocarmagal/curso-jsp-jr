@@ -54,7 +54,6 @@ public class Usuario extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -79,7 +78,7 @@ public class Usuario extends HttpServlet {
 			String telefone = request.getParameter("telefone");
 
 			BeanCursoJsp usuario = new BeanCursoJsp();
-			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
@@ -101,11 +100,7 @@ public class Usuario extends HttpServlet {
 					msg = "Nome deve ser informado";
 					podeInserir = false;
 
-				} else if (telefone == null || telefone.isEmpty()) {
-					msg = "Telefone deve ser informado";
-					podeInserir = false;
-
-				}
+				} 
 
 				else if (id == null || id.isEmpty()
 						&& !daoUsuario.validarLogin(login)) {// QUANDO DOR

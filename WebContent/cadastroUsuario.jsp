@@ -15,7 +15,8 @@
 		<h1>Cadastro de Usuario</h1>
 	</center>
 	<h3 style="color: orange;">${msg}</h3>
-	<form action="salvarUsuario" method="post">
+	<form action="salvarUsuario" method="post"
+		onsubmit="return validarCampos() ? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -85,6 +86,26 @@
 					</table>
 		</ul>
 	</form>
-	</div>
+	<script type="text/javascript">
+		function validarCampos() {
+			if (document.getElementById("login").value == '') {
+				alert('Informe o Login');
+				return false;
+			} else if (document.getElementById("senha").value == '') {
+				alert('Informe o Senha');
+				return false;
+			} else if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome');
+				return false;
+			} else if (document.getElementById("telefone").value == '') {
+				alert('Informe o Telefone');
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+
+
 </body>
 </html>

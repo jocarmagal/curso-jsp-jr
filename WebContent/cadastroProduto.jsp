@@ -15,7 +15,7 @@
 		<h1>Cadastro de Produto</h1>
 	</center>
 	<h3 style="color: orange;">${msg}</h3>
-	<form action="salvarProduto" method="post" id="formProduto">
+	<form action="salvarProduto" method="post" id="formProduto" onsubmit="return validarCampos() ? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -80,6 +80,22 @@
 					</table>
 		</ul>
 	</form>
-	</div>
+<script type="text/javascript">
+		function validarCampos() {
+			if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome do Produto');
+				return false;
+			} else if (document.getElementById("quantidade").value == '') {
+				alert('Informe a Quantidade do Produto');
+				return false;
+			} else if (document.getElementById("valor").value == '') {
+				alert('Informe o Valor do Produto');
+				return false;
+			} 
+
+			return true;
+		}
+	</script>
+
 </body>
 </html>
