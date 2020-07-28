@@ -3,11 +3,7 @@ package connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- * Respons�vel por fazer a conex�o com o banco de dados
- * @author alex
- *
- */
+
 public class SingleConnection {
 	
 	private static String banco = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";

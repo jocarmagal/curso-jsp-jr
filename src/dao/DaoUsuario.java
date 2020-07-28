@@ -22,12 +22,12 @@ public class DaoUsuario {
 	public void salvar(BeanCursoJsp usuario) {
 
 		try {
-			String sql = "insert into usuario(login, senha, nome, fone) values(?,?,?,?)";
+			String sql = "insert into usuario(login, senha, nome, telefone) values(?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
 			insert.setString(3, usuario.getNome());
-			insert.setString(4, usuario.getFone());
+			insert.setString(4, usuario.getTelefone());
 			insert.execute();
 			connection.commit();
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class DaoUsuario {
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			beanCursoJsp.setNome(resultSet.getString("nome"));	
-			beanCursoJsp.setFone(resultSet.getString("fone"));	
+			beanCursoJsp.setTelefone(resultSet.getString("telefone"));	
 
 			listar.add(beanCursoJsp);
 		}
@@ -93,7 +93,7 @@ public class DaoUsuario {
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			beanCursoJsp.setNome(resultSet.getString("nome"));
-			beanCursoJsp.setNome(resultSet.getString("fone"));
+			beanCursoJsp.setTelefone(resultSet.getString("telefone"));
 			return beanCursoJsp;
 		}
 
@@ -114,6 +114,42 @@ public class DaoUsuario {
 
 		return false;
 	}
+	public boolean validarLoginUpdate(String login,String id) throws Exception {
+		String sql = "select count(1) as qtd from usuario where login='" + login + "'and id <>" + id;
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			return resultSet.getInt("qtd") <= 0 ;
+		}
+
+		return false;
+	}
+	public boolean validarSenhaUpdate(String senha,String id) throws Exception {
+		String sql = "select count(1) as qtd from usuario where senha='" + senha + "'and id <>" + id;
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			return resultSet.getInt("qtd") <= 0 ;
+		}
+
+		return false;
+	}
+	public boolean validarSenha(String senha) throws Exception {
+		String sql = "select count(1) as qtd from usuario where senha='" + senha + "'";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			
+			return resultSet.getInt("qtd") <= 0;/*Return true*/
+		}
+		return false;
+	}
+	
+	
+	
 
 
 public void atualizar(BeanCursoJsp usuario) {
@@ -123,7 +159,7 @@ public void atualizar(BeanCursoJsp usuario) {
 	preparedStatement.setString(1, usuario.getLogin()); 
 	preparedStatement.setString(2, usuario.getSenha());
 	preparedStatement.setString(3, usuario.getNome());
-	preparedStatement.setString(4, usuario.getFone());
+	preparedStatement.setString(4, usuario.getTelefone());
 	preparedStatement.executeUpdate();
 	connection.commit();
 	}catch (Exception e) {

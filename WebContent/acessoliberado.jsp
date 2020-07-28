@@ -14,5 +14,11 @@
 	<a href="salvarUsuario?acao=listartodos"><img
 										src="resources/img/usuario.jpeg" title="Cadastro de usuário"
 										width="100px" height="100px"></a>
+											<a href="salvarProduto?acao=listartodos"><img
+										src="resources/img/produtos.png" title="Cadastro de produto"
+										width="100px" height="100px"></a>
+										
+										
+										
 </body>
 </html>

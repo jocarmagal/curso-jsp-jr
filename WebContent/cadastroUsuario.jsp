@@ -44,7 +44,7 @@
 					<tr>
 						<td>Fone:</td>
 						<td><input type="text" id="fone" name="fone"
-							value="${user.fone}"></td>
+							value="${user.telefone}"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -62,7 +62,7 @@
 							<th>Id</th>
 							<th>Login</th>
 							<th>Nome</th>
-							<th>Fone</th>
+							<th>Telefone</th>
 							<th>Delete</th>
 							<th>Editar</th>
 						</tr>
@@ -73,7 +73,7 @@
 								<td style="width: 150px"><c:out value="${user.id}"></c:out></td>
 								<td style="widht: 150px"><c:out value="${user.login}"></c:out></td>
 								<td><c:out value="${user.nome}"></c:out></td>
-								<td><c:out value="${user.fone}"></c:out></td>
+								<td><c:out value="${user.telefone}"></c:out></td>
 								<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
 										src="resources/img/excluir.png" alt="excluir" title="Excluir"
 										width="20px" height="20px"></a></td>

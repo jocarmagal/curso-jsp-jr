@@ -10,15 +10,15 @@ public class BeanCursoJsp {
 	
 	private String nome;
 
-	public String getFone() {
-		return fone;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setFone(String fone) {
-		this.fone = fone;
+	public void setTelefone(String fone) {
+		this.telefone = fone;
 	}
 
-	private String fone;
+	private String telefone;
 	
 	
 	public void setNome(String nome) {
