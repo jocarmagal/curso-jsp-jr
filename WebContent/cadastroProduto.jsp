@@ -11,6 +11,9 @@
 
 </head>
 <body>
+
+<a href="acessoliberado.jsp"> <img alt="Inicio" title="Inicio" src="resources/img/inicio.png" width="90px" height="90px"></a>
+<a href="index.jsp"> <img alt="Sair" title="Sair" src="resources/img/sair.jpeg" width="90px" height="90px"></a>
 	<center>
 		<h1>Cadastro de Produto</h1>
 	</center>
