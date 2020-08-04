@@ -22,8 +22,8 @@ public class DaoUsuario {
 	public void salvar(BeanCursoJsp usuario) {
 
 		try {
-			String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, ibge)"
-					+ " values(?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contentType)"
+					+ " values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -35,7 +35,8 @@ public class DaoUsuario {
 			insert.setString(8, usuario.getCidade());
 			insert.setString(9, usuario.getEstado());
 			insert.setString(10, usuario.getIbge());
-			
+			insert.setString(11, usuario.getFotoBase64());
+			insert.setString(12, usuario.getContentType());
 			insert.execute();
 			connection.commit();
 		} catch (Exception e) {

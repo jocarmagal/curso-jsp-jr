@@ -1,18 +1,32 @@
 package servlet;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.buf.UDecoder;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import beans.BeanCursoJsp;
 import dao.DaoUsuario;
 
 @WebServlet("/salvarUsuario")
+@MultipartConfig
 public class Usuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -87,7 +101,7 @@ public class Usuario extends HttpServlet {
 			
 
 			BeanCursoJsp usuario = new BeanCursoJsp();
-			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			usuario.setId((id != null && !id.isEmpty()) ? Long.parseLong(id) : null);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
@@ -102,6 +116,17 @@ public class Usuario extends HttpServlet {
 			
 			try {
 
+				if (ServletFileUpload.isMultipartContent(request)){
+
+					Part imagemFoto = request.getPart("foto");
+					
+					String fotoBase64 = new Base64()
+					.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
+					
+					usuario.setFotoBase64(fotoBase64);
+					usuario.setContentType(imagemFoto.getContentType());}
+				
+				
 				String msg = null;
 				boolean podeInserir = true;
 
@@ -156,9 +181,23 @@ public class Usuario extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 
 		}
+		
 
 	}
+	private byte[] converteStremParabyte(InputStream imagem) throws Exception{
+		
+		 ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		 int reads = imagem.read();
+		 while (reads != -1){
+			 baos.write(reads);
+			 reads = imagem.read();
+		 }
+		 
+		 return baos.toByteArray();
+		
+		}
 
 }

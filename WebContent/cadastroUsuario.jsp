@@ -26,7 +26,7 @@
 	</center>
 	<h3 style="color: orange;">${msg}</h3>
 	<form action="salvarUsuario" method="post"
-		onsubmit="return validarCampos() ? true : false;">
+		onsubmit="return validarCampos() ? true : false;" enctype="multipart/form-data" >
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -75,11 +75,20 @@
 					<td><input type="text" id="ibge" name="ibge"></td>
 					</tr>
 					<tr>
+					
+					
 						<td></td>
 						<td><input type="submit" value="Salvar"><input
 							type="submit" value="Cancelar"
 							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 					</tr>
+<tr>
+							<td>Foto</td>
+							<td>
+								<input type="file" name="foto" value="Foto"/>
+							</td>	
+						</tr>		
+
 				</table>
 
 			</li>
