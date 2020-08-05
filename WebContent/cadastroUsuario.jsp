@@ -26,7 +26,8 @@
 	</center>
 	<h3 style="color: orange;">${msg}</h3>
 	<form action="salvarUsuario" method="post"
-		onsubmit="return validarCampos() ? true : false;" enctype="multipart/form-data" >
+		onsubmit="return validarCampos() ? true : false;"
+		enctype="multipart/form-data">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -65,7 +66,7 @@
 					<tr>
 						<td>Telefone:</td>
 						<td><input type="text" id="telefone" name="telefone"
-							value="${user.telefone}"placeholder="Informe um Telefone"></td>
+							value="${user.telefone}" placeholder="Informe um Telefone"></td>
 						<td>Estado:</td>
 						<td><input type="text" id="estado" name="estado"></td>
 					</tr>
@@ -75,19 +76,17 @@
 					<td><input type="text" id="ibge" name="ibge"></td>
 					</tr>
 					<tr>
-					
-					
+
+
 						<td></td>
 						<td><input type="submit" value="Salvar"><input
 							type="submit" value="Cancelar"
 							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 					</tr>
-<tr>
-							<td>Foto</td>
-							<td>
-								<input type="file" name="foto" value="Foto"/>
-							</td>	
-						</tr>		
+					<tr>
+						<td>Foto</td>
+						<td><input type="file" name="foto" value="Foto" /></td>
+					</tr>
 
 				</table>
 
@@ -101,6 +100,7 @@
 				<th>Id</th>
 				<th>Login</th>
 				<th>Nome</th>
+				<th>Imagem</th>
 				<th>Telefone</th>
 				<th>Cep</th>
 				<th>Rua</th>
@@ -119,6 +119,7 @@
 					<td><c:out value="${user.id}"></c:out></td>
 					<td><c:out value="${user.login}"></c:out></td>
 					<td><c:out value="${user.nome}"></c:out></td>
+					<td><img src='<c:out value="${user.tempFotoUser}"/>' width="32px" height="32px" /></td>
 					<td><c:out value="${user.telefone}"></c:out></td>
 					<td><c:out value="${user.cep}"></c:out></td>
 					<td><c:out value="${user.rua}"></c:out></td>

@@ -22,7 +22,7 @@ public class DaoUsuario {
 	public void salvar(BeanCursoJsp usuario) {
 
 		try {
-			String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contentType)"
+			String sql = "insert into usuario(login, senha, nome, telefone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype)"
 					+ " values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
@@ -70,6 +70,8 @@ public class DaoUsuario {
 			beanCursoJsp.setCidade(resultSet.getString("cidade"));	
 			beanCursoJsp.setEstado(resultSet.getString("estado"));	
 			beanCursoJsp.setIbge(resultSet.getString("ibge"));	
+			beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
+			beanCursoJsp.setContentType(resultSet.getString("contenttype"));
 			listar.add(beanCursoJsp);
 		}
 		return listar;
@@ -114,6 +116,8 @@ public class DaoUsuario {
 			beanCursoJsp.setCidade(resultSet.getString("cidade"));	
 			beanCursoJsp.setEstado(resultSet.getString("estado"));	
 			beanCursoJsp.setIbge(resultSet.getString("ibge"));	
+			beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
+			beanCursoJsp.setContentType(resultSet.getString("contenttype"));
 			return beanCursoJsp;
 		}
 
